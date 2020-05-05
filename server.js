@@ -1,14 +1,14 @@
 'use strict';
 //Imports
-const Discord = require("discord.js");
-const fs = require("graceful-fs");
-const msmute = require("ms");
-const request = require("request");
+const Discord = require('discord.js');
+const fs = require('graceful-fs');
+const msmute = require('ms');
+const request = require('request');
 const mexp = require('math-expression-evaluator');
 const Canvas = require('canvas');
-var eco = require("discord-economy");
-const catFacts = require("cat-facts");
-const alpha = require("alphavantage")({ key: `thunder${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)}` });
+var eco = require('discord-economy');
+const catFacts = require('cat-facts');
+const alpha = require('alphavantage')({ key: `thunder${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)}` });
 const wiki = require('wikijs').default;
 var cats = require("cat-ascii-faces");
 var weather = require("weather-js");
