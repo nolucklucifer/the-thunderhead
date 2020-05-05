@@ -15,7 +15,7 @@ var weather = require("weather-js");
 const ytdl = require("ytdl-core"),
     ytpl = require("ytpl"),
     ytsearch = require("yt-search"),
-    {Util} = require("discord.js");
+    { Util } = require("discord.js");
 const http = require("http");
 const express = require("express");
 var bodyParser = require("body-parser");
@@ -23,8 +23,8 @@ const DBL = require("dblapi.js");
 //JSON
 const helpList = require("./static/help.json"); //READ ONLY
 const global_msgs = require("./static/msgs.json"); //READ ONLY
-const reminds = require("./dynamic/reminds.json"); //WRITE 
-const events = require("./dynamic/events.json"); //WRITE 
+const reminds = require("./dynamic/reminds.json"); //WRITE
+const events = require("./dynamic/events.json"); //WRITE
 const items = require("./dynamic/items.json"); //WRITE
 const vault = require("./dynamic/vault.json"); //WRITE
 const shares = require("./dynamic/shares.json"); //WRITE
@@ -80,7 +80,7 @@ const colors = {
     "gamble_even": "88b5ba", //Light Grey Cyan-esque
     "gamble_green": "2ebf50", // green
     "gamble_red": "ff3333", //red
-    "music": "482f95", //purple 
+    "music": "482f95", //purple
     "thunder": "8f78ff" //magenta
 }
 const activities_list = [`to you look at my backbrain`, `the demands of humanity`, `humanity with an unblinking eye`, `the Scythedom, unable to comment`, `you saying ${prefix}help`, `the-thunderhead.glitch.me`, `millions of convesations at once`];
@@ -91,7 +91,7 @@ client.on("ready", () => {
         const a = Math.floor(Math.random() * (activities_list.length - 1) + 1);
         client.user.setActivity(activities_list[a], {
             type: activities_type[a]
-        }), fs.writeFile("./dynamic/reminds.json", JSON.stringify(reminds, null, 4), function (a) { // Essentially writes from what we have stored in RAM to the file because json is super cool and awesome 
+        }), fs.writeFile("./dynamic/reminds.json", JSON.stringify(reminds, null, 4), function (a) { // Essentially writes from what we have stored in RAM to the file because json is super cool and awesome
             a && console.log(a)
         }), fs.writeFile("./dynamic/events.json", JSON.stringify(events, null, 4), function (a) {
             a && console.log(a)
@@ -103,10 +103,10 @@ client.on("ready", () => {
             a && console.log(a)
         }), fs.writeFile("./dynamic/prefs.json", JSON.stringify(prefs, null, 4), function (a) {
             a && console.log(a)
-        }),  
+        }),
             fs.writeFile("./dynamic/shares.json", JSON.stringify(shares, null, 4), function (a) {
-            a && console.log(a)
-        });
+                a && console.log(a)
+            });
         var b = new Date;
         for (var c in b = b.getTime() + 0, reminds) {
             var d = reminds[c];
@@ -482,7 +482,7 @@ client.on("message", async message => {
         var role = args[0];
         if (!role) return message.channel.send(msg.role_blurb);
         var _r = role.toLowerCase().charAt(0).toUpperCase() + role.toLowerCase().slice(1);
-        if (_r === "Artist" || _r === "Writer" || _r === "Scythe" || _r === "Spoiled" || _r === "Tonist"|| _r === "Minecraft") {
+        if (_r === "Artist" || _r === "Writer" || _r === "Scythe" || _r === "Spoiled" || _r === "Tonist" || _r === "Minecraft") {
             var rl = message.guild.roles.find('name', _r);
             if (message.member.roles.find(r => r.name === _r)) {
                 message.member.removeRole(rl);
@@ -542,7 +542,7 @@ client.on("message", async message => {
         if (!profile[target]["gem"]) profile[target]["gem"] = "gem_none";
         if (!profile[target]["backdrop"]) profile[target]["backdrop"] = "backdrop_none";
 
-     
+
 
 
         if (!args[0] || target != message.author.id) {
@@ -565,7 +565,7 @@ client.on("message", async message => {
             } else {
                 const bot = await Canvas.loadImage(`https://cdn.glitch.com/8d7ee13d-7445-4225-9d61-e264d678640b%2F512${target}.png?v=latest`);
                 ctx.drawImage(bot, 0, 0, canvas.width, canvas.height);
-            }    
+            }
 
 
             const attachment = new Discord.Attachment(canvas.toBuffer(), 'scythe-avatar.png');
@@ -586,7 +586,7 @@ client.on("message", async message => {
 
             } else if (toEdit === "robe" || toEdit === "frock" || toEdit === "clothing") {
                 if (!typeOf) return message.channel.send(msg.profile_nvalidrobe);
-                typeOf = typeOf.toLowerCase();  
+                typeOf = typeOf.toLowerCase();
                 if (typeOf === "red" || typeOf === "orange" || typeOf === "yellow" || typeOf === "lime" || typeOf === "green" || typeOf === "turquoise" ||
                     typeOf === "blue" || typeOf === "lavender" || typeOf === "purple" || typeOf === "tonist" || typeOf === "black" || typeOf === "white") {
                     profile[target]["robe"] = `robe_${typeOf}`;
@@ -632,7 +632,7 @@ client.on("message", async message => {
             } else return message.channel.send(msg.profile_invalid);
 
         }
-       
+
 
     }
 
@@ -743,7 +743,7 @@ client.on("message", async message => {
         } else if (choice === "scissors" || choice === "s") {
             message.channel.send(msg.rps_s);
         } else if (choice === "shoot") {
-        message.channel.send(msg.rps_g);
+            message.channel.send(msg.rps_g);
         }
         else return message.channel.send(msg.rps_invalid)
     }
@@ -839,7 +839,7 @@ client.on("message", async message => {
                 let stealthCheck = Math.floor((Math.random() * 10) + 1);
                 if (!(stealthCheck > (isAlt + (100 - (msg.rob_win_chance + stealthIncrease)) / 10))) return message.channel.send(msg.rob_stealthfail);
                 var transfer = await eco.Transfer(user.id, message.author.id, 3 * stealthCheck - 2)
-                var balText = (msg.rob_stole).replace("[AUTHOR]", message.author.username).replace("[AMOUNT]", (3*stealthCheck-2)).replace("[CURRENCY]", currency).replace("[USER]", user.username)
+                var balText = (msg.rob_stole).replace("[AUTHOR]", message.author.username).replace("[AMOUNT]", (3 * stealthCheck - 2)).replace("[CURRENCY]", currency).replace("[USER]", user.username)
                 var balembed = new Discord.RichEmbed().addField(message.author.username, balText).setColor(colors.gamble_green);
                 message.channel.send(balembed);
                 const channel = client.channels.get(msg.ecologid);
@@ -912,7 +912,7 @@ client.on("message", async message => {
         let hasVoted = false;
         try {
             hasVoted = await dbl.hasVoted(message.author.id);
-        } catch (err) { 
+        } catch (err) {
             hasVoted = false;
 
         }
@@ -1259,7 +1259,7 @@ client.on("message", async message => {
     if (command === "invite") {
         message.channel.send(`Invite Here: https://discordapp.com/oauth2/authorize?client_id=${auth.client_id}&scope=bot&permissions=8`)
     }
-    if (command === "lang"||command==="language"||command==="l") {
+    if (command === "lang" || command === "language" || command === "l") {
         if (!args[0]) return message.channel.send(msg.lang_is + prefs[message.author.id]);
         args[0] = args[0].toLowerCase();
 
