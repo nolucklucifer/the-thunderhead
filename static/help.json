@@ -196,6 +196,12 @@
             "state": "beta",
             "use": "profile {[@User]/Category} {Value}",
             "desc": "Make a scythely avatar! Categories: Robe, Hair, Background, Skin, Face, and Gems"
+        },
+        "lang": {
+            "name": "lang",
+            "state": "beta",
+            "use": "lang [language-code]",
+            "desc":  "Set a language for me to talk to you in."
         }
     },
     "eco": {

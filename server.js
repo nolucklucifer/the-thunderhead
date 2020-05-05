@@ -1030,7 +1030,7 @@ client.on("message", async message => {
         if (user === 'marketplace') {
             username_message = 'Marketplace'
         }
-        message.channel.send("Itemcount for " + username_message + ":  " + (count + 1))
+        message.channel.send("Inventory|| " + username_message + ":  " + (count + 1))
         var b = "◀";
         var f = "▶";
         var page = args[1] - 1;
