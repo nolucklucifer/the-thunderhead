@@ -227,13 +227,13 @@
         "site_site": "https://the-thunderhead.glitch.me/"
     },
     "es": {
-        "mantenencia": "el robot esta teniendo mantenencia, por favor intenta despues",
+        "mantenencia": "El robot esta teniendo mantenencia, por favor intenta despues!",
         "Saludos": "Saludos! Yo soy el Thunderhead",
-        "saludos_desc": "gracias por el ping [AUTHOR], mi [help]([SITE]) commando es `[PREFIX]help`.",
+        "saludos_desc": "Gracias por el ping [AUTHOR], mi [help]([SITE]) commando es `[PREFIX]help`.",
         "ping_ping": "Pinging el servidor local de Thunderhead.",
         "ping_pong": "Pong! 🏓",
-        "help_beta": "\neste commando esta en *beta*. puede tener errores o no trabajar.",
-        "help_delta": "\neste comando esta en **delta**. nadamas es para los desarrolladores.",
+        "help_beta": "\nEste commando esta en *beta*. puede tener errores o no trabajar.",
+        "help_delta": "\nEste comando esta en **delta**. nadamas es para los desarrolladores.",
         "help_nocommand": "There is no command at that page.",
         "goddardMoments": [
             "taking pennies from the donation box",
