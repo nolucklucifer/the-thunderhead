@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 //Imports
 const Discord = require('discord.js');
 const fs = require('graceful-fs');
@@ -44,7 +44,7 @@ function clean(text) {
 const prefix = "/";
 const devPrefix = "d/";
 const developerId = "297096161842429963";
-const currency = `<:vibes:699395024886038628>` //Todo: Implement Vibe Emoji
+const currency = "<:vibes:699395024886038628>"; //Todo: Implement Vibe Emoji
 const client = new Discord.Client();
 const dbl = new DBL(auth.dblapi_token, client);
 client.commands = new Discord.Collection();
@@ -82,7 +82,7 @@ const colors = {
     "gamble_red": "ff3333", //red
     "music": "482f95", //purple
     "thunder": "8f78ff" //magenta
-}
+};
 const activities_list = [`to you look at my backbrain`, `the demands of humanity`, `humanity with an unblinking eye`, `the Scythedom, unable to comment`, `you saying ${prefix}help`, `the-thunderhead.glitch.me`, `millions of convesations at once`];
 const activities_type = ["WATCHING", "LISTENING", "WATCHING", "WATCHING", "LISTENING", "STREAMING", "LISTENING"];
 //Reminds & Activities
@@ -91,22 +91,17 @@ client.on("ready", () => {
         const a = Math.floor(Math.random() * (activities_list.length - 1) + 1);
         client.user.setActivity(activities_list[a], {
             type: activities_type[a]
-        }), fs.writeFile("./dynamic/reminds.json", JSON.stringify(reminds, null, 4), function (a) { // Essentially writes from what we have stored in RAM to the file because json is super cool and awesome
-            a && console.log(a)
-        }), fs.writeFile("./dynamic/events.json", JSON.stringify(events, null, 4), function (a) {
-            a && console.log(a)
-        }), fs.writeFile("./dynamic/items.json", JSON.stringify(items, null, 4), function (a) {
-            a && console.log(a)
-        }), fs.writeFile("./dynamic/vault.json", JSON.stringify(vault, null, 4), function (a) {
-            a && console.log(a)
-        }), fs.writeFile("./dynamic/profiles.json", JSON.stringify(profile, null, 4), function (a) {
-            a && console.log(a)
-        }), fs.writeFile("./dynamic/prefs.json", JSON.stringify(prefs, null, 4), function (a) {
-            a && console.log(a)
-        }),
-            fs.writeFile("./dynamic/shares.json", JSON.stringify(shares, null, 4), function (a) {
-                a && console.log(a)
-            });
+        });
+
+        // Essentially writes from what we have stored in RAM to the file because json is super cool and awesome
+        fs.writeFile("./dynamic/reminds.json", JSON.stringify(reminds, null, 4), function (err) { if (err) console.log(err);});
+        fs.writeFile("./dynamic/events.json", JSON.stringify(events, null, 4), function (err) {if (err) console.log(err);});
+        fs.writeFile("./dynamic/items.json", JSON.stringify(items, null, 4), function (err) {if (err) console.log(err);});
+        fs.writeFile("./dynamic/vault.json", JSON.stringify(vault, null, 4), function (err) {if (err) console.log(err);});
+        fs.writeFile("./dynamic/shares.json", JSON.stringify(shares, null, 4), function (err) {if (err) console.log(err);});
+        fs.writeFile("./dynamic/profiles.json", JSON.stringify(profile, null, 4), function (err) {if (err) console.log(err);});
+        fs.writeFile("./dynamic/prefs.json", JSON.stringify(prefs, null, 4), function (err) {if (err) console.log(err);});
+
         var b = new Date;
         for (var c in b = b.getTime() + 0, reminds) {
             var d = reminds[c];
