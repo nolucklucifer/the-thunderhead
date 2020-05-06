@@ -1529,10 +1529,18 @@ client.on("message", async message => {
 });
 //Dev Command System
 client.on("message", async message => {
+
+
     const isDevExclusive = (message.author.id === developerId);
     if (message.content.indexOf(devPrefix) !== 0) return;
     const args = message.content.slice(devPrefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
+
+    if (!prefs[message.author.id]) prefs[message.author.id] = "en"
+    if (!global_msgs[prefs[message.author.id]]) prefs[message.author.id] = "en"
+    let lang = prefs[message.author.id]
+    const msg = global_msgs[lang]
+
     if (command === "help") {
         var helpText;
         var commandData = {};
@@ -1730,6 +1738,12 @@ client.on("message", async message => {
 });
 //Async - Music
 async function queueSong(video, message, voiceChannel, queue) {
+
+    if (!prefs[message.author.id]) prefs[message.author.id] = "en"
+    if (!global_msgs[prefs[message.author.id]]) prefs[message.author.id] = "en"
+    let lang = prefs[message.author.id]
+    const msg = global_msgs[lang]
+
     const serverQueue = queue.get(message.guild.id)
     let thumbnail = ""
     if (video.player_response) thumbnail = (video.player_response.videoDetails.thumbnail.thumbnails).slice(-1)[0]["url"];
@@ -1753,7 +1767,7 @@ async function queueSong(video, message, voiceChannel, queue) {
             const connection = await voiceChannel.join();
             queueConstruct.connection = connection;
             queue.set(message.guild.id, queueConstruct)
-            playSong(message.guild, queue, queueConstruct.songs[0])
+            playSong(message.guild, queue, queueConstruct.songs[0], message)
         } catch (e) {
             console.log(e)
             message.channel.send(msg.music_unknownerr)
@@ -1762,7 +1776,13 @@ async function queueSong(video, message, voiceChannel, queue) {
     } else serverQueue.songs.push(song);
     return;
 }
-async function playSong(guild, queue, song) {
+async function playSong(guild, queue, song, message) {
+
+    if (!prefs[message.author.id]) prefs[message.author.id] = "en"
+    if (!global_msgs[prefs[message.author.id]]) prefs[message.author.id] = "en"
+    let lang = prefs[message.author.id]
+    const msg = global_msgs[lang]
+
     const serverQueue = queue.get(guild.id);
     if (!song) {
         serverQueue.voiceChannel.leave();
@@ -1772,7 +1792,7 @@ async function playSong(guild, queue, song) {
     serverQueue.connection.playStream(ytdl(song.id))
         .on("end", reason => {
             serverQueue.songs.shift();
-            playSong(guild, queue, serverQueue.songs[0])
+            playSong(guild, queue, serverQueue.songs[0], message)
         })
         .on("error", console.error)
         .setVolumeLogarithmic(serverQueue.volume / 250)
