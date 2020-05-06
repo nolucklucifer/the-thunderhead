@@ -227,9 +227,9 @@
         "site_site": "https://the-thunderhead.glitch.me/"
     },
     "es": {
-        "mantenencia": "El robot esta teniendo mantenencia, por favor intenta despues!",
-        "Saludos": "Saludos! Yo soy el Thunderhead",
-        "saludos_desc": "Gracias por el ping [AUTHOR], mi [help]([SITE]) commando es `[PREFIX]help`.",
+        "maintainence": "El robot esta teniendo mantenencia, por favor intenta despues!",
+        "greetings": "Saludos! Yo soy el Thunderhead",
+        "greetings_desc": "Gracias por el ping [AUTHOR], mi [help]([SITE]) commando es `[PREFIX]help`.",
         "ping_ping": "Pinging el servidor local de Thunderhead.",
         "ping_pong": "Pong! 🏓",
         "help_beta": "\nEste commando esta en *beta*. puede tener errores o no trabajar.",
