@@ -20,6 +20,8 @@ const http = require("http");
 const express = require("express");
 var bodyParser = require("body-parser");
 const DBL = require("dblapi.js");
+const app = express();
+
 //JSON
 const helpList = require("./static/help.json"); //READ ONLY
 const global_msgs = require("./static/msgs.json"); //READ ONLY
@@ -34,6 +36,12 @@ const altlist = require("./dynamic/altlist.json"); //WRITE
 const authFile = require("./auth.json"); // READ ONLY AUTH
 const auth = authFile.stable;
 
+app.get("/items.json", function (request, response) { response.send(items); });
+
+app.get("/", (request, response) => {
+    console.log(Date.now() + " Ping Received");
+    response.sendStatus(200);
+});
 
 //Functions
 function clean(text) {
@@ -732,6 +740,9 @@ client.on("message", async message => {
         }
         var rollEmbed = new Discord.RichEmbed().setTitle(message.author.username).addField(`${profitWord} ${Math.abs(stake)} ${currency}`, `Balance: **${parseInt(balance) + parseInt(stake)}**`).setFooter(`${message.author.username} 's account.`, message.author.displayAvatarURL).setColor(gambleEndColor);
         message.channel.send(rollEmbed)
+
+
+
         const channel = client.channels.get(msg.ecologid);
         if (message.guild.id != "625021277295345667") channel.send(rollEmbed)
         output = await eco.AddToBalance(message.author.id, stake)
