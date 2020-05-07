@@ -891,7 +891,7 @@ client.on("message", async message => {
                 filter: x => x.balance > 50,
                 search: message.mentions.users.first().id
             })
-            message.channel.send(`${(output).replace("Not found", "?")} - ${message.mentions.users.first().username}`);
+            message.channel.send(`${(output).toString().replace("Not found", "?")} - ${message.mentions.users.first().username}`);
         } else {
             eco.Leaderboard({}).then(async users => { //async
                 if (users[0]) var firstplace = await client.fetchUser(users[0].userid) //Searches for the user object in discord for first place
