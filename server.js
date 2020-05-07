@@ -5,7 +5,8 @@ const fs = require('graceful-fs');
 const msmute = require('ms');
 const request = require('request');
 const mexp = require('math-expression-evaluator');
-const {registerFont, Canvas } = require('canvas');
+const Canvas require('canvas');
+const registerFont = request('canvas'); //smh canvas wont let me dual import :(
 var eco = require('discord-economy');
 const catFacts = require('cat-facts');
 const alpha = require('alphavantage')({ key: `thunder${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)}` });
@@ -42,7 +43,7 @@ function clean(text) {
 }
 
 //Fonts
-registerFont('Quicksand-Medium', { family: 'Quicksand' })
+registerFont('Quicksand-Medium.ttf', { family: 'Quicksand' })
 
 
 //Definitions
