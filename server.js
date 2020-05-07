@@ -715,8 +715,7 @@ client.on("message", async message => {
         if (message.guild.id != "625021277295345667") channel.send(`(${message.author.id}) => (${user.id})`)
     }
     if (command === "nod") {
-        let nodEmbed = new Discord.RichEmbed()
-            .addField("Nursery Rhyme (origin unknown)", "Let\u2019s all forsake,\r\nThe Land of Wake,\r\nAnd break for the Land of Nod.\r\n\r\nWhere we can try,\r\nTo touch the sky,\r\nOr dance beneath the sod.\r\n\r\nA toll for the living,\r\nA toll for the lost,\r\nA toll for the wise ones,\r\nWho tally the cost,\r\n\r\nSo let\u2019s escape,\r\nDue south of \u2009Wake,\r\nAnd make for the Land of Nod.\r\n");
+        let nodEmbed = new Discord.RichEmbed().addField("Nursery Rhyme (origin unknown)", "Let\u2019s all forsake,\r\nThe Land of Wake,\r\nAnd break for the Land of Nod.\r\n\r\nWhere we can try,\r\nTo touch the sky,\r\nOr dance beneath the sod.\r\n\r\nA toll for the living,\r\nA toll for the lost,\r\nA toll for the wise ones,\r\nWho tally the cost,\r\n\r\nSo let\u2019s escape,\r\nDue south of \u2009Wake,\r\nAnd make for the Land of Nod.\r\n");
         message.channel.send(nodEmbed);
     }
     if (command === "scripture") {
@@ -1760,7 +1759,7 @@ async function queueSong(video, message, voiceChannel, queue) {
             voiceChannel,
             connection: null,
             songs: [song],
-            volume: 50,
+            volume: 50, 
             playing: true
         }
         try {
