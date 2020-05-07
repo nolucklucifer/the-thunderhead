@@ -696,7 +696,7 @@ client.on("message", async message => {
         ctx.fillText((userToCheck.username), canvas.width / 4.2, canvas.height / 2.5);
         ctx.font = `30px ${font}`;
         ctx.fillText((balText), canvas.width / 4.2, canvas.height / 1.7);
-        ctx.drawImage(currencyIcon, 310, 75, canvas.height / 6, canvas.height / 6.1);
+        ctx.drawImage(currencyIcon, 310, 72, canvas.height / 6, canvas.height / 6);
         ctx.beginPath();
         ctx.arc(50, 75, canvas.height / 5.5, 0, Math.PI * 2, true);
         ctx.closePath();
@@ -1197,7 +1197,7 @@ client.on("message", async message => {
                 let stockMessage = `**${target.username}'s Portfolio**`;
                 for (var i in msg.stocks) {
                     let sharesOf = 0;
-                    if (shares[target.id][Object.keys(msg.stocks)[index]]) sharesOf = shares[terget.id][Object.keys(msg.stocks)[index]];
+                    if (shares[target.id][Object.keys(msg.stocks)[index]]) sharesOf = shares[target.id][Object.keys(msg.stocks)[index]];
                     stockMessage += `\n${msg.stocks[i][0]}: ${Object.keys(msg.stocks)[index]} | Owned: ${sharesOf} shares`;
                     index++
                 }
