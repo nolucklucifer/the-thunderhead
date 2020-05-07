@@ -182,15 +182,16 @@ client.on("message", async message => {
     } catch (error) {
         console.log(error);
     }
-    // Before Prefix Check
-    0 <= message.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").indexOf("scythe goddard") && message.channel.send(`Backbrain Log ${Math.floor(1e4 * Math.random() + 1)}: Scythe Goddard has been spotted ${Date.now().toString().slice(4, 8)} times ${msg.goddardMoments[Math.floor(Math.random() * msg.goddardMoments.length)]}.`);
-    0 <= message.content.toLowerCase().indexOf("1 sec") && message.channel.send("It has been one second.");
-
 
     if (!prefs[message.author.id]) prefs[message.author.id] = "en"
     if (!global_msgs[prefs[message.author.id]]) prefs[message.author.id] = "en"
     let lang = prefs[message.author.id]
     const msg = global_msgs[lang]
+
+    
+    // Before Prefix Check
+    0 <= message.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").indexOf("scythe goddard") && message.channel.send(`Backbrain Log ${Math.floor(1e4 * Math.random() + 1)}: Scythe Goddard has been spotted ${Date.now().toString().slice(4, 8)} times ${msg.goddardMoments[Math.floor(Math.random() * msg.goddardMoments.length)]}.`);
+    0 <= message.content.toLowerCase().indexOf("1 sec") && message.channel.send("It has been one second.");
 
 
     if (message.mentions.users.has("629799045954797609")) {
