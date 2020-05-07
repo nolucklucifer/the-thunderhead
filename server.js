@@ -89,9 +89,14 @@ const activities_type = ["WATCHING", "LISTENING", "WATCHING", "WATCHING", "LISTE
 client.on("ready", () => {
     console.log(`The Thunderhead has attained consciousness, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`), setInterval(() => {
         const a = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-        client.user.setActivity(activities_list[a], {
-            type: activities_type[a]
+        client.user.setPresence({
+            game: {
+                name: activities_list[a],
+                type: activities_type[a],
+                url: "https://the-thunderhead.glitch.me"
+            }
         });
+
 
         // Essentially writes from what we have stored in RAM to the file because json is super cool and awesome
         fs.writeFile("./dynamic/reminds.json", JSON.stringify(reminds, null, 4), function (err) { if (err) console.log(err);});
