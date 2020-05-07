@@ -21,7 +21,9 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const DBL = require("dblapi.js");
 const app = express();
-
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.listen(0);
 //JSON
 const helpList = require("./static/help.json"); //READ ONLY
 const global_msgs = require("./static/msgs.json"); //READ ONLY
