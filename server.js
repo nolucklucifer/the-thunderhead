@@ -49,8 +49,7 @@ registerFont('Quicksand-Medium', { family: 'Quicksand' })
 const prefix = "/";
 const devPrefix = "d/";
 const developerId = "297096161842429963";
-const currency = "<:vibes:699395024886038628>"; 
-let currencyImage = `https://cdn.discordapp.com/emojis/${currency.split(":")[2].split(">")[0]}.png`;
+const currency = "<:vibes:699395024886038628>";
 const client = new Discord.Client();
 const dbl = new DBL(auth.dblapi_token, client);
 client.commands = new Discord.Collection();
@@ -676,9 +675,36 @@ client.on("message", async message => {
         var userToCheck = message.mentions.members.first();
         userToCheck = userToCheck ? userToCheck.user : message.author;
         var output = await eco.FetchBalance(userToCheck.id);
-        balText = `Balance: **${output.balance}** ${currency}`;
-        var balembed = new Discord.RichEmbed().addField(userToCheck.username, balText).setColor(colors.gamble_green);
-        message.channel.send(balembed);
+        balText = `Balance: ${output.balance}`;
+
+        let font = "Quicksand-Medium"
+        if (!profile[userToCheck.id]) {
+            profile[userToCheck.id] = {};
+            message.channel.send(msg.profile_setup);
+
+        }
+        if (!profile[userToCheck.id]["backdrop"]) profile[userToCheck.id]["backdrop"] = "backdrop_none";
+        const canvas = Canvas.createCanvas(400, 160);
+        const ctx = canvas.getContext('2d');
+        const background = await Canvas.loadImage(`https://cdn.glitch.com/8d7ee13d-7445-4225-9d61-e264d678640b%2F${profile[userToCheck.id]["backdrop"]}.png?v=latest`);
+        const darkener = await Canvas.loadImage(`https://cdn.glitch.com/8d7ee13d-7445-4225-9d61-e264d678640b%2Fdarkener.png`);
+        const currencyIcon = await Canvas.loadImage(`https://cdn.discordapp.com/emojis/${currency.split(":")[2].split(">")[0]}.png`);
+        await ctx.drawImage(background, 0, 0, 400, 160);
+        await ctx.drawImage(darkener, 0, 0, 400, 160);
+        ctx.font = `15px ${font}`;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText((userToCheck.username), canvas.width / 4.2, canvas.height / 2.5);
+        ctx.font = `30px ${font}`;
+        ctx.fillText((balText), canvas.width / 4.2, canvas.height / 1.7);
+        ctx.drawImage(currencyIcon, 310, 75, canvas.height / 6, canvas.height / 6);
+        ctx.beginPath();
+        ctx.arc(50, 75, canvas.height / 5.5, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.clip();
+        const avatar = await Canvas.loadImage(userToCheck.displayAvatarURL);
+        ctx.drawImage(avatar, 20, 40, canvas.height / 2.5, canvas.height / 2.5);
+        const attachment = new Discord.Attachment(canvas.toBuffer(), 'balance.png');
+        message.channel.send(attachment);
     }
     if (command === "roll") {
         var output = await eco.FetchBalance(message.author.id)
