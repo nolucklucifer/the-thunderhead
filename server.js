@@ -23,7 +23,7 @@ const DBL = require("dblapi.js");
 const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(200);
+app.listen(3000);
 //JSON
 const helpList = require("./static/help.json"); //READ ONLY
 const global_msgs = require("./static/msgs.json"); //READ ONLY
@@ -42,8 +42,8 @@ app.get("/items.json", function (request, response) { response.send(items); });
 app.get("/server.js", function (request, response) { response.sendFile(__dirname + "/server.js"); });
 app.get("/prefs.json", function (request, response) { response.send(prefs); });
 app.get("/help.json", function (request, response) { response.send(helpList); });
-app.get("/msg.json", function (request, response) { response.send(global_msgs); });
-app.get("/", function (request, response) { response.send(`<meta http-equiv="refresh" content="0; url=https://www.mathsisfun.com/algebra/polynomials.html" />`); });
+app.get("/msgs.json", function (request, response) { response.send(global_msgs); });
+app.get("/", function (request, response) { response.send(`<meta http-equiv="refresh" content="0; url=https://hyperskrub.glitch.me" />`); });
 
 app.get("/", (request, response) => {
     console.log(Date.now() + " Ping Received");
