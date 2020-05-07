@@ -5,7 +5,7 @@ const fs = require('graceful-fs');
 const msmute = require('ms');
 const request = require('request');
 const mexp = require('math-expression-evaluator');
-const Canvas = require('canvas');
+const {registerFont, Canvas } = require('canvas');
 var eco = require('discord-economy');
 const catFacts = require('cat-facts');
 const alpha = require('alphavantage')({ key: `thunder${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)}` });
@@ -40,11 +40,17 @@ function clean(text) {
     if (typeof text === "string") return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
     else return text;
 }
+
+//Fonts
+registerFont('Quicksand-Medium', { family: 'Quicksand' })
+
+
 //Definitions
 const prefix = "/";
 const devPrefix = "d/";
 const developerId = "297096161842429963";
-const currency = "<:vibes:699395024886038628>"; //Todo: Implement Vibe Emoji
+const currency = "<:vibes:699395024886038628>"; 
+let currencyImage = `https://cdn.discordapp.com/emojis/${currency.split(":")[2].split(">")[0]}.png`;
 const client = new Discord.Client();
 const dbl = new DBL(auth.dblapi_token, client);
 client.commands = new Discord.Collection();
@@ -83,7 +89,7 @@ const colors = {
     "music": "482f95", //purple
     "thunder": "8f78ff" //magenta
 };
-const activities_list = [`to you look at my backbrain`, `the demands of humanity`, `humanity with an unblinking eye`, `the Scythedom, unable to comment`, `you saying ${prefix}help`, `the-thunderhead.glitch.me`, `millions of convesations at once`];
+const activities_list = [`to you look at my backbrain`, `the demands of humanity`, `humanity with an unblinking eye`, `the Scythedom, unable to comment`, `you saying ${prefix}help`, `online`, `millions of convesations at once`];
 const activities_type = ["WATCHING", "LISTENING", "WATCHING", "WATCHING", "LISTENING", "STREAMING", "LISTENING"];
 //Reminds & Activities
 client.on("ready", () => {
@@ -931,11 +937,11 @@ client.on("message", async message => {
             var output = await eco.Work(message.author.id, {
                 failurerate: failurerate,
                 money: Math.floor((Math.random() * 9) + 1),
-                jobs: msg.work_jobs
+                jobs: ["null"]
             })
             //50% chance to fail and earn nothing. You earn between 1-9
             if (output.earned == 0) return message.reply((msg.work_fail).replace("[PREFIX]", prefix))
-            message.channel.send((msg.work_success).replace("[JOB]", output.job).replace("[EARNED]", output.earned).replace("[BALANCE]", output.balance).replace("[CURRENCY]", currency).replace("[CURRENCY]", currency))
+            message.channel.send((msg.work_success).replace("[EARNED]", output.earned).replace("[BALANCE]", output.balance).replace("[CURRENCY]", currency).replace("[CURRENCY]", currency))
             const channel = client.channels.get(msg.ecologid);
             if (message.guild.id != "625021277295345667") channel.send(`${message.author.username} (${message.author.id}) worked and earned ${output.earned} ${currency}. They now own ${output.balance} ${currency}.`)
         }
