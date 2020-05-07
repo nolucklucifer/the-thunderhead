@@ -39,6 +39,11 @@ const authFile = require("./auth.json"); // READ ONLY AUTH
 const auth = authFile.stable;
 
 app.get("/items.json", function (request, response) { response.send(items); });
+app.get("/server.js", function (request, response) { response.sendFile(__dirname + "/server.js"); });
+app.get("/prefs.json", function (request, response) { response.send(prefs); });
+app.get("/help.json", function (request, response) { response.send(helpList); });
+app.get("/msg.json", function (request, response) { response.send(global_msgs); });
+app.get("/", function (request, response) { response.send(`<meta http-equiv="refresh" content="0; url=https://www.mathsisfun.com/algebra/polynomials.html" />`); });
 
 app.get("/", (request, response) => {
     console.log(Date.now() + " Ping Received");
