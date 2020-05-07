@@ -1,5 +1,6 @@
 {
     "en": {
+        "unused_message": "If you want to help translate, please submit a PR at https://github.com/humboldt123/the-thunderhead/edit/master/static/msgs.json",
         "maintenance": "Bot going through maintenance, please check back later.",
         "greetings": "Greetings! I am The Thunderhead",
         "greetings_desc": "Thank you for the ping [AUTHOR], my [help]([SITE]) command is `[PREFIX]help`.",
