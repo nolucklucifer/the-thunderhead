@@ -5,8 +5,7 @@ const fs = require('graceful-fs');
 const msmute = require('ms');
 const request = require('request');
 const mexp = require('math-expression-evaluator');
-const Canvas require('canvas');
-const registerFont = request('canvas'); //smh canvas wont let me dual import :(
+const Canvas = require('canvas');
 var eco = require('discord-economy');
 const catFacts = require('cat-facts');
 const alpha = require('alphavantage')({ key: `thunder${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)}` });
@@ -43,7 +42,7 @@ function clean(text) {
 }
 
 //Fonts
-registerFont('Quicksand-Medium.ttf', { family: 'Quicksand' })
+//registerFont('Quicksand-Medium.ttf', { family: 'Quicksand' })
 
 
 //Definitions
@@ -678,7 +677,7 @@ client.on("message", async message => {
         var output = await eco.FetchBalance(userToCheck.id);
         balText = `Balance: ${output.balance}`;
 
-        let font = "Quicksand-Medium"
+        let font = "Calibri"
         if (!profile[userToCheck.id]) {
             profile[userToCheck.id] = {};
             message.channel.send(msg.profile_setup);
@@ -697,7 +696,7 @@ client.on("message", async message => {
         ctx.fillText((userToCheck.username), canvas.width / 4.2, canvas.height / 2.5);
         ctx.font = `30px ${font}`;
         ctx.fillText((balText), canvas.width / 4.2, canvas.height / 1.7);
-        ctx.drawImage(currencyIcon, 310, 75, canvas.height / 6, canvas.height / 6);
+        ctx.drawImage(currencyIcon, 310, 75, canvas.height / 6, canvas.height / 6.1);
         ctx.beginPath();
         ctx.arc(50, 75, canvas.height / 5.5, 0, Math.PI * 2, true);
         ctx.closePath();
@@ -716,16 +715,16 @@ client.on("message", async message => {
         if (stake < 1 || stake > balance) return message.channel.send(msg.roll_namt);
         var staticStake = stake;
         var profitFactor = Math.floor((Math.random() * 6) + 1) - 4;
-        var profitWord = "Nothing Happened";
+        var profitWord = "/";
         var gambleEndColor = colors.gamble_even;
         if (0 < profitFactor) {
             // positive value
-            profitWord = "Won";
+            profitWord = "+";
             stake = stake * profitFactor;
             gambleEndColor = colors.gamble_green;
         } else if (profitFactor < 0) {
             // negative value
-            profitWord = "Lost";
+            profitWord = "-";
             stake = stake * -1;
             gambleEndColor = colors.gamble_red;
         } else {
@@ -1198,7 +1197,7 @@ client.on("message", async message => {
                 let stockMessage = `**${target.username}'s Portfolio**`;
                 for (var i in msg.stocks) {
                     let sharesOf = 0;
-                    if (shares[message.author.id][Object.keys(msg.stocks)[index]]) sharesOf = shares[message.author.id][Object.keys(msg.stocks)[index]];
+                    if (shares[target.id][Object.keys(msg.stocks)[index]]) sharesOf = shares[terget.id][Object.keys(msg.stocks)[index]];
                     stockMessage += `\n${msg.stocks[i][0]}: ${Object.keys(msg.stocks)[index]} | Owned: ${sharesOf} shares`;
                     index++
                 }
