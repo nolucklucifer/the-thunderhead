@@ -1853,3 +1853,4 @@ async function playSong(guild, queue, song, message) {
 const ytsr = (url) => new Promise((resolve, reject) => ytsearch(url, (err, r) => err ? reject(err) : resolve(r)))
 // Login
 client.login(auth.token);
+if (command === "tpose") return message.channel.send(`${message.author.username} has asserted their dominance`)
