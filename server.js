@@ -1162,8 +1162,8 @@ client.on("message", async message => {
                 });
             }
             message.channel.send("Stock: " + (count + 1) + " items.")
-            var b = "arrow_backward";
-            var f = "arrow_forward";
+            var b = ":arrow_backward:";
+            var f = ":arrow_forward:";
             var page = args[0] - 1;
             if (!embeds[page - 1]) page = 0; // -1 because computers start at 0 :eye_roll_emoji_keanu_chungus_wholsome:
             var embed = embeds[page];
@@ -1278,8 +1278,8 @@ client.on("message", async message => {
                 description: `${args}`.split(",").join(" ")
             }
         }).then(async function (msg) {
-            await msg.react("✅");
-            await msg.react("⛔");
+            await msg.react(":white_check_mark:");
+            await msg.react(":no_entry:");
         }).catch(function () { });
     }
     if (command === "announce") {
