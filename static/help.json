@@ -333,7 +333,7 @@
             "name": "vol",
             "state": "gamma",
             "use": "vol [Amount]",
-            "desc": "Set the volume as a number from 1-5"
+            "desc": "Set the volume as a number from 0-100"
         }
     },
     "mod": {

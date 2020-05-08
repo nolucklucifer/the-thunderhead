@@ -306,7 +306,7 @@ client.on("message", async message => {
         message.channel.send("https://imgur.com/CwQRLGK")
     }
     if (command === "userinfo") {
-        if (!args[0]) return message.channel.send(userinfo_nomention)
+        if (!args[0]) return message.channel.send(msg.userinfo_nomention)
         let user = client.users.get(args[0].replace(/[@!<>]/g, ""));
         if (!user) return message.channel.send(msg.userinfo_nomention);
         var userBalance = await eco.FetchBalance(user.id);
@@ -1162,8 +1162,8 @@ client.on("message", async message => {
                 });
             }
             message.channel.send("Stock: " + (count + 1) + " items.")
-            var b = "◀";
-            var f = "▶";
+            var b = "arrow_backward";
+            var f = "arrow_forward";
             var page = args[0] - 1;
             if (!embeds[page - 1]) page = 0; // -1 because computers start at 0 :eye_roll_emoji_keanu_chungus_wholsome:
             var embed = embeds[page];
@@ -1225,10 +1225,7 @@ client.on("message", async message => {
                 alpha.data.intraday(msg.stocks[args[0]][1]).then(data => { // [1] because thats the name of the irl company its mirroring :0
                     let stockPrice = (parseInt(data["Time Series (1min)"][Object.keys(data["Time Series (1min)"])[0]]["4. close"]));
                     let oldPrice = (parseInt(data["Time Series (1min)"][Object.keys(data["Time Series (1min)"])[1]]["4. close"]));
-                    let stockTrend = "📊";
-                    if (stockPrice > oldPrice) stockTrend = "📈";
-                    if (oldPrice > stockPrice) stockTrend = "📉";
-                    message.channel.send(`${msg.stocks[args[0]][0]} (${args[0]}) @ ${stockPrice} ${currency}\nTrend: ${stockTrend}`);
+                    message.channel.send(`${msg.stocks[args[0]][0]} (${args[0]}) @ ${stockPrice} ${currency}`);
                 });
             }
         } catch (err) {
